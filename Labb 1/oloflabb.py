@@ -23,7 +23,6 @@ def geometrisk_talfoljdsberaknare(n, A1, q):
    q - kvot mellan talen
    OUTPUT: heltal
    """
-   sista_talet = A1 * q ** (n - 1)
    geometrisk_talsumma = A1 * ((q ** n) - 1)/(q - 1)
    return geometrisk_talsumma
 
