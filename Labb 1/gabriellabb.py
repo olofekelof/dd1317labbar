@@ -1,5 +1,24 @@
-"""Gabriel Söderberg, Lab 1, DD1317"""
+"""Gabriel Söderberg, Lab 1, DD1317
 
+
+I detta program matar in de tre värden som definierar en godtycklig aritmetisk eller geometrisk
+talföljd, och tillbaka ut får du summan för den givna följden.
+"""
+
+print("Hej! Detta program räknar ut summor av geometriska och aritmetiska talföljder.")
+print()
+print("För den aritmetiska summan du vill beräkna skriver du in:")
+print()
+print("1. Det första talet i följden")
+print("2. Differensen mellan talen i följden")
+print("3. Antal tal i följden", end="\n")
+print()
+print("Och för den geometriska summan skriver du in:")
+print()
+print("1. Det första talet i följden")
+print("2. Kvoten mellan talen i följden")
+print("3. Antal tal i följden")
+print("-------------------------------------------------------------------")
 
 def hamta_tal_n_ar(startvarde, differens, antalelement):
     """Tar första talet i en aritmetisk följd,
@@ -19,16 +38,16 @@ def hamta_summa_ge(startvarde, kvot, antalelement):
     return summa_ge
 
 
-# Skriv in värdena för din aritmetiska talföljd här
-tal_1_ar = 2     # Första elementet
-diff_ar = 4        # Differensen
-antal_el_ar = 3  # Antal element
+# Användaren skriver in värdena för sin aritmetiska talföljd
+tal_1_ar = int(input("Första elementet i din aritmetiska talföljd: "))
+diff_ar = int(input("Differensen i din aritmetiska talföljd: "))
+antal_el_ar = int(input("Antal element i din aritmetiska följd: "))
 
 
-# Skriv in värdena för din geometriska talföljd här
-tal_1_ge = 1     # Första talet
-kvot_ge = 3         # Kvoten
-antal_el_ge = 5  # Antal element
+# Användaren skriver in värdena för sin geometriska talföljd
+tal_1_ge = int(input("Första talet i din geometriska talföljd: "))
+kvot_ge = int(input("Kvoten i din geometriska talföljd: "))
+antal_el_ge = int(input("Antal element i din geometriska talföljd: "))
 
 
 print ("Den aritmetiska summan är:", end=" ")
