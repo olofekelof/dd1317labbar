@@ -50,14 +50,14 @@ forsta_talet_aritmetisk = flyttalstestare((input("Skriv in startvärdet (a1): ")
 differens = flyttalstestare((input("Skriv in differensen (d): "))) #differensen mellan talen i din talföljd
 print()
 
-print("Skriv in startvärden för den geometriska summan")
-quota = flyttalstestare(input("Skriv in kvotvärde (q): ")) #kvoten av två på varandra följande tal i talföljden
+print("Data för den geometriska summan:")
 forsta_talet_geometrisk = flyttalstestare(input("Skriv in startvärdet (g1): ")) #första talet i din geometriska talföljd
+quota = flyttalstestare(input("Skriv in kvotvärde (q). obs: q skiljt från 1: ")) #kvoten av två på varandra följande tal i talföljden
+
 
 print()
 print("Antal termer i summorna:")
-
-try: #test för felaktig input i anatalet tal
+try:
     antalet_tal = int(input("Skriv in antalet element i föjden (n): ")) #antalet tal i din talföljd
 except ValueError:
     sys.exit("Det där var inte ett heltal, starta om programmet och försök igen")
@@ -79,3 +79,6 @@ elif aritmetisk_summa == geometrisk_summa:
     print("Den aritmetiska talsumman är lika med den geometriska talsumman")
 else: 
     print("ett oväntat fel uppstod, vänligen kontakta skaparen")
+
+print(f"den artimetiska talsumman är {aritmetisk_summa}")
+print(f"den geometriska talsumman är {geometrisk_summa}")
