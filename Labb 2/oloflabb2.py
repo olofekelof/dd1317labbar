@@ -1,7 +1,6 @@
 """
 Det här är Olofs labb 2 dd1317
 """
-
 import sys
 def aritmetisk_talfoljdsberaknare(n, a1, d):
     """
@@ -25,11 +24,7 @@ def geometrisk_talfoljdsberaknare(n, g1, q):
    q - kvot mellan talen
    OUTPUT: flyttal
    """
-   try:
-        geometrisk_talsumma = g1 * ((q ** n) - 1)/(q - 1)
-   except ZeroDivisionError:
-        sys.exit("Division med noll är inte tilllåtet, försök igen med ett kvotvärde (q) skiljt från 1")
-
+   geometrisk_talsumma = g1 * ((q ** n) - 1)/(q - 1)
    return geometrisk_talsumma
 
 def flyttalstestare(indata):
@@ -53,7 +48,8 @@ print()
 print("Data för den geometriska summan:")
 forsta_talet_geometrisk = flyttalstestare(input("Skriv in startvärdet (g1): ")) #första talet i din geometriska talföljd
 quota = flyttalstestare(input("Skriv in kvotvärde (q). obs: q skiljt från 1: ")) #kvoten av två på varandra följande tal i talföljden
-
+if quota == 1:
+    sys.exit("q får inte vara lika med 1, vänligen starta om programmet och försök igen")
 
 print()
 print("Antal termer i summorna:")
