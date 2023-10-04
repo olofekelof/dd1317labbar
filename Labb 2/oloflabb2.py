@@ -58,8 +58,11 @@ try:
 except ValueError:
     sys.exit("Det där var inte ett heltal, starta om programmet och försök igen")
 
-aritmetisk_summa = aritmetisk_talfoljdsberaknare(antalet_tal, forsta_talet_aritmetisk, differens)
-geometrisk_summa = geometrisk_talfoljdsberaknare(antalet_tal, forsta_talet_geometrisk, quota)
+try:
+    aritmetisk_summa = aritmetisk_talfoljdsberaknare(antalet_tal, forsta_talet_aritmetisk, differens)
+    geometrisk_summa = geometrisk_talfoljdsberaknare(antalet_tal, forsta_talet_geometrisk, quota)
+except OverflowError:
+    sys.exit("Det där var för stora värden, försök igen med mindre startvärden. Vänligen starta om programmet")
 
 
 #jämför den aritmetiska och geometriska talsummans värde
