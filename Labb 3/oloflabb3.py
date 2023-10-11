@@ -1,6 +1,6 @@
 import os #Används för att kunna rensa terminalen
 import olofmodullabb3 #Program som testar värden mot antigen heltal eller flyttal
-
+import sys
 
 def clear_terminal():
     """
@@ -55,13 +55,17 @@ def main():
     n = olofmodullabb3.integer_tester("skriv in värdet på n: ")
     while n <= 0: 
         n = olofmodullabb3.integer_tester("n måste vara ett heltal större än 0, försök igen: ") 
-
-    aritmetisk_summa = aritmetisk_talfoljdsberaknare(n, a1, d)
-    geometrisk_summa = geometrisk_talfoljdsberaknare(n, g1, q)
+    try: #Felhantering av för stora inmatningsvärden
+        aritmetisk_summa = aritmetisk_talfoljdsberaknare(n, a1, d)
+        geometrisk_summa = geometrisk_talfoljdsberaknare(n, g1, q)
+    except OverflowError: #rekursion för att låta användaren försöka igen med nya värden
+        print("Dina inmatade värden var för stora för programmet att hantera, vänligen starta om och försök igen")
+        main()
     clear_terminal() #Rensar terminalen för att ge en mer användarvänlig upplevelse
-    #Skriver ut talsummornas värde för att ge användaren en större funktionalitet av programmet 
+    #Skriver ut talsummornas värde för att ge användaren en större funktionalitet av programmet
     print(f"Den aritmetiska summan är {aritmetisk_summa}")
     print(f"Den geometriska summan är {geometrisk_summa}")
+        
 
     # Jämför de olika summorna och anger vilken som är störst
     if aritmetisk_summa > geometrisk_summa:
