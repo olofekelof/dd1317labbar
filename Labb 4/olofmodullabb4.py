@@ -37,13 +37,13 @@ def positive_integer_tester(prompt):
     """
     while True: 
         try:
-            value = input(prompt)  # Frågar användaren om ett värde
-            value = int(value)  # Försöker omvandla värdet till ett heltal
+            value = input(prompt)  #Frågar användaren om ett värde
+            value = int(value)  #Försöker omvandla värdet till ett heltal
 
-            if value > 0:  # Kontrollerar om värdet är ett positivt heltal
+            if value > 0:  #Kontrollerar om värdet är ett positivt heltal
                 return value 
-            else:  # Om värdet inte är positivt, informeras användaren och loopen fortsätter
+            else:  #Om värdet inte är positivt, informeras användaren och loopen fortsätter
                 print("Det angivna värdet är inte ett positivt heltal, försök igen! : ")
                 
-        except ValueError:  # Fångar ett undantag om omvandlingen till heltal misslyckas
+        except ValueError:  #Fångar ett undantag om omvandlingen till heltal misslyckas
             print("Antalet studenter måste anges i form av heltal, försök igen! : ")
