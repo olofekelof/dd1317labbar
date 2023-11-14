@@ -1,0 +1,82 @@
+import os
+import re
+import Modullabb6
+
+print(os.getcwd())
+
+def clear_terminal():
+    input("Tryck ENTER för att gå vidare!")
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+print("Var god skriv in namnet på textfilen du vill ladda in:")
+user_input = input(":")
+def load_data(user_input):
+    """
+    Ladda in data från den angivna textfilen
+
+    INPUT:
+    - user_input: Namnet på textfilen som ska laddas in. OBS måste finnas i samma mapp som programmet.
+
+    OUTPUT:
+    - lista: En lista som innehåller personuppgifter
+    """
+    persons = []
+    with open(user_input, 'r') as file:
+        lines = file.readlines()
+        for i in range(0, len(lines), 3):
+            person = {
+                'personnr': lines[i].strip(),
+                'efternamn': lines[i + 1].strip(),
+                'förnamn': lines[i + 2].strip()
+            }
+            persons.append(person)
+    return persons
+
+def search_person(persons, query):
+    """
+    Sökfunktion för listan där användaren kan välja att skriva antingen namn, efternamn eller personnr.
+
+    INPUT:
+    - persons (lista): Lista över personuppgifter
+    - query (str): Användarens sökdata
+
+    Returns:
+    - lista: En lista av matchande personer.
+    """
+    results = []
+    for person in persons:
+        if query.lower() in person['personnr'].lower() or query.lower() in person['efternamn'].lower() or query.lower() in person['förnamn'].lower():
+            results.append(person)
+    return results
+
+def main():
+    # Load data from the text file in the same folder as the script
+    file_name = user_input # Replace with the actual name of your file
+    persons = load_data(file_name)
+
+    while True:
+        # Änvändarens input för sökterm
+        query = input('Skriv in en sökterm (Personnummer, Efternamn eller förnamn): ')
+
+        # Sök efter personer
+        results = search_person(persons, query)
+
+        # Visa resultat av din sökning
+        if results:
+            print('Sökresultat:')
+            for result in results:
+                print(f"Personnummer: {result['personnr']}, Efternamn: {result['efternamn']}, Förnamn: {result['förnamn']}")
+        else:
+            print('Inga matchningar :(')
+
+        # Fråga ifall användaren vill göra en till sökning
+        another_search = Modullabb6.string_tester('Vill du söka igen? (ja/nej): ')
+        if another_search.lower() == 'ja':
+            clear_terminal()
+        elif another_search.lower() == 'nej':
+            break
+        else:
+            print('Det där var varken ja eller nej, försök igen!')
+
+if __name__ == "__main__":
+    main()
