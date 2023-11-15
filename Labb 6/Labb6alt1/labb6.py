@@ -149,6 +149,7 @@ def main():
 
         function_choice = tests_values.positive_integer_tester("Vill du (1) söka efter en student i listan, (2) lägga till studenter i listan, eller (3) se listan med studenter? : ")
         while True: 
+            #låter användaren lägga till studenter
             if function_choice == 2: 
                 #Input av användarens val av studenter
                 print("Skriv in följande information om dina studenter:\n")
@@ -169,6 +170,8 @@ def main():
                 if len(all_schools) == 0:
                     sys.exit("Programmet har ingen data att hantera! Programmet avlsutas. Ha en trevlig dag!")
                 break
+
+            #skriver ut alla studenter
             elif function_choice == 3: 
                 print("Här är listan med skolor och deras elever:")
                 for school_name, school_obj in all_schools.items():
@@ -182,7 +185,7 @@ def main():
                 
                 #Användaren får söka efter specifika studenter m.h.a personnummer
                 #Returnerar om studenten finns samt informationen som finns sparad hos den
-                found = False #detta avsnitt är skapat av chat gpt
+                found = False
                 for specific_school in all_schools.values():
                     student = specific_school.search_student(search_value)
                     if student:
@@ -191,7 +194,7 @@ def main():
                         found = True
                         break
                 if not found:
-                    print("Det finns tyvärr ingen sådan student") #slut här
+                    print("Det finns tyvärr ingen sådan student")
                 break
             else:
                 print("Okej, ha en trevlig dag")

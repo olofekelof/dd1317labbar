@@ -1,9 +1,8 @@
 
-#Modul labb 5
+#Modul labb 6
 """
 Programmet felhanterar inputs från användaren och säkerställer att de är korrekta
 """
-#Olof Ekelöf
 
 import os
 
@@ -98,10 +97,10 @@ def tests_file_format(prompt):
     """
     while True:
         try:
-            with open(prompt, "r", encoding="utc-8") as file:
+            file_format = input(prompt)
+            with open(file_format, "r", encoding="utf-8") as file:
                 lines = file.readlines()
                 lines = None
-            file_format = input(prompt)
             if file_format.endswith(".txt"):
                 return file_format
             else:
