@@ -135,48 +135,66 @@ def main():
     - Användaren ges möjlighet att söka efter studenter
     """
     #Datorn hade fel path till filen och kunde således inte öppna andra filer i samma mapp
-    file_input = tests_values.tests_file_format("Vad heter filen med alla studenter? ")
-    reads_student_files(file_input)
+    print("Välkommen till Grupp 43 labb 6!")
+    user_file_input = tests_values.string_tester("Vill du läsa in en fil med studenter till programmet? (ja/nej)").lower()
 
-    #Input av användarens val av studenter
-    print("Skriv in följande information om dina studenter:\n")
-    number_of_students = tests_values.positive_integer_tester("Hur många studenter vill du lägga till? ")
-    print("")
+    if user_file_input == "ja":
+        file_input = tests_values.tests_file_format("Vad heter filen med alla studenter? ")
+        reads_student_files(file_input)
 
-    #Skapar Student och School objekt samt lägger till elever i respektive skola
-    if number_of_students > 0:    
-        while number_of_students > 0:
-            number_of_students -= 1
-            student, school = creates_students()
-            school.add_students(student)
-    else:
-        print("Okej, du har beslutat att inte lägga till några nya studenter")
-        print("")
+    while True:
+        print(" ")
+        print(" ")
+        print("Välkommen till studentlistan!")
 
+        function_choice = tests_values.positive_integer_tester("Vill du (1) söka efter en student i listan, (2) lägga till studenter i listan, eller (3) se listan med studenter? : ")
+        while True: 
+            if function_choice == 2: 
+                #Input av användarens val av studenter
+                print("Skriv in följande information om dina studenter:\n")
+                number_of_students = tests_values.positive_integer_tester("Hur många studenter vill du lägga till? ")
+                print("")
 
-    #avbryter programmet om det inte finns någon data för programmet att använda
-    if len(all_schools) == 0:
-        sys.exit("Programmet har ingen data att hantera! Ha en trevlig dag!")
+                #Skapar Student och School objekt samt lägger till elever i respektive skola
+                if number_of_students > 0:    
+                    while number_of_students > 0:
+                        number_of_students -= 1
+                        student, school = creates_students()
+                        school.add_students(student)
+                else:
+                    print("Okej, du har beslutat att inte lägga till några nya studenter")
+                    print("")
 
-    #Låter användaren söka efter en student
-    user_input = tests_values.string_tester("Vill du söka efter en student? (Ja/Nej) ").lower() #Felhantering för inputs
-    if user_input == "ja": 
-        search_value = tests_values.personalreg_tester("Vad har studenten för personnummer? : ")
-        
-        #Användaren får söka efter specifika studenter m.h.a personnummer
-        #Returnerar om studenten finns samt informationen som finns sparad hos den
-        found = False #detta avsnitt är skapat av chat gpt
-        for specific_school in all_schools.values():
-            student = specific_school.search_student(search_value)
-            if student:
-                print(specific_school)
-                print(student)
-                found = True
+                #avbryter programmet om det inte finns någon data för programmet att använda
+                if len(all_schools) == 0:
+                    sys.exit("Programmet har ingen data att hantera! Programmet avlsutas. Ha en trevlig dag!")
                 break
-        if not found:
-            print("Det finns tyvärr ingen sådan student") #slut här
-    else:
-        print("Okej, ha en trevlig dag")
+            elif function_choice == 3: 
+                print("Här är listan med skolor och deras elever:")
+                for school_name, school_obj in all_schools.items():
+                    print(f"Skola: {school_name}")
+                    for student in school_obj.studentlista:
+                            print(f"   {student}")
+                break
+            #Låter användaren söka efter en student
+            elif function_choice == 1: 
+                search_value = tests_values.personalreg_tester("Vad har studenten för personnummer? : ")
+                
+                #Användaren får söka efter specifika studenter m.h.a personnummer
+                #Returnerar om studenten finns samt informationen som finns sparad hos den
+                found = False #detta avsnitt är skapat av chat gpt
+                for specific_school in all_schools.values():
+                    student = specific_school.search_student(search_value)
+                    if student:
+                        print(specific_school)
+                        print(student)
+                        found = True
+                        break
+                if not found:
+                    print("Det finns tyvärr ingen sådan student") #slut här
+                break
+            else:
+                print("Okej, ha en trevlig dag")
 
 if __name__ == "__main__":
     tests_values.clear_terminal()
